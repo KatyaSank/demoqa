@@ -99,11 +99,6 @@ class Base:
         except NoSuchElementException:
             return False
 
-
-    def click_2(self, selector):
-        element = self.get_locator_by_xpath(selector)
-        element.click()
-
     def scroll_to_top(self):
         return self.driver.execute_script("scroll(0, 0);")
 

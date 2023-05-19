@@ -17,21 +17,18 @@ class Click(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Double click')
     def use_double_click(self):
         return self.double_click(self.double_click_button)
 
-    @allure.step
-    def assert_that_double_click_result_message_is_displayed(self):
-        assert self.get_element_text(self.result_double_click) == self.double_click_result_message
-
-    @allure.step
+    @allure.step('Right click')
     def use_right_click(self):
         return self.right_click(self.right_click_button)
 
-    @allure.step
+    @allure.step('Check that message after double clicking is displayed')
+    def assert_that_double_click_result_message_is_displayed(self):
+        assert self.get_element_text(self.result_double_click) == self.double_click_result_message
+
+    @allure.step('Check that message after right clicking is displayed')
     def assert_that_right_click_result_message_is_displayed(self):
         assert self.get_element_text(self.result_right_click) == self.right_click_result_message
-
-
-

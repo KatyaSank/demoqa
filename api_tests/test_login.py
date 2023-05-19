@@ -2,6 +2,7 @@ from api_methods.Login import *
 from pytest import mark
 
 
+@allure.title('Login with valid data')
 def test_valid_login():
     login = Login()
     response = login.login_with_valid_data()
@@ -14,9 +15,10 @@ def test_valid_login():
     login.assert_status_code_200(response)
 
 
-@mark.parametrize('x, response', USER_INVALID_DATA)
-def test_invalid_login(x, response):
+@allure.title('Login with invalid/incorrect data')
+@mark.parametrize('credentials, response', USER_INVALID_DATA)
+def test_invalid_login(credentials, response):
     login = Login()
-    response = login.login_with_invalid_data(x)
+    response = login.login_with_invalid_data(credentials)
     login.assert_message_value(response)
     login.assert_status_code_400(response)

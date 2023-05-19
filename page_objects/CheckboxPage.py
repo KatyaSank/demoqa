@@ -18,36 +18,30 @@ class Checkbox(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Expand checkboxes tree')
     def expand_tree(self):
         return self.click(self.plus_button)
 
-    @allure.step
+    @allure.step('Click "office" checkbox')
     def click_checkbox_office(self):
         return self.click(self.checkbox_office)
 
-    @allure.step
+    @allure.step('Check that result message consist of "office"')
     def assert_that_office_is_displayed(self):
         return self.assert_that_element_is_displayed_by_xpath(self.result_office)
 
-    @allure.step
+    @allure.step('Check that result message consist of "public"')
     def assert_that_public_is_displayed(self):
         return self.assert_that_element_is_displayed_by_xpath(self.result_public)
 
-    @allure.step
+    @allure.step('Check that result message consist of "private"')
     def assert_that_private_is_displayed(self):
         return self.assert_that_element_is_displayed_by_xpath(self.result_private)
 
-    @allure.step
+    @allure.step('Check that result message consist of "classfield"')
     def assert_that_classfield_is_displayed(self):
         return self.assert_that_element_is_displayed_by_xpath(self.result_classfield)
 
-    @allure.step
+    @allure.step('Check that result message consist of "general"')
     def assert_that_general_is_displayed(self):
         return self.assert_that_element_is_displayed_by_xpath(self.result_general)
-
-
-
-
-
-

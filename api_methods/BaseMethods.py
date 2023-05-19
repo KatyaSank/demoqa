@@ -1,7 +1,7 @@
 import requests
 
 
-class Base:
+class BaseApiMethod:
     @staticmethod
     def get(url, data):
         return requests.get(url, data)
@@ -11,7 +11,8 @@ class Base:
         return requests.post(url, data)
 
     @staticmethod
-    def delete(url):
+    def delete(self, url, method, code):
+        self.assert_status_code(method, code)
         return requests.delete(url)
 
     @staticmethod

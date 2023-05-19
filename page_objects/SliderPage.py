@@ -15,12 +15,10 @@ class Slider(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Change slider value')
     def move_slider(self):
         return self.move_element(self.slider_locator, self.coordinate_x, self.coordinate_y)
 
-    @allure.step
+    @allure.step('Check that the slider value changed correct')
     def assert_that_slider_moved_correct(self):
         assert self.get_attribute_by_value(self.slider_locator) == self.slider_result_value
-
-

@@ -14,11 +14,10 @@ class Select(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Select value from dropdown')
     def select_value_from_dropdown(self):
         return self.select_by_id_value(self.old_style_dropdown, self.old_style_value_white)
 
-    @allure.step
+    @allure.step('Check that correct value selected from dropdown')
     def assert_selected_value_from_dropdown(self):
         return self.assert_that_element_is_selected_by_xpath(self.white_option)
-

@@ -15,28 +15,26 @@ class Radio(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Click "impressive" radio')
     def click_impressive(self):
         return self.click(self.impressive)
 
-    @allure.step
-    def assert_that_impressive_is_displayed(self):
-        return self.assert_that_element_is_displayed_by_xpath(self.result_impressive)
-
-    @allure.step
-    def assert_that_impressive_is_not_displayed(self):
-        assert not self.is_element_displayed(self.result_impressive)
-
-    @allure.step
+    @allure.step('Click "yes" radio')
     def click_yes(self):
         return self.click(self.yes)
 
-    @allure.step
+    @allure.step('Check that result text consists of "impressive"')
+    def assert_that_impressive_is_displayed(self):
+        return self.assert_that_element_is_displayed_by_xpath(self.result_impressive)
+
+    @allure.step('Check that result text doesnt consist of "impressive"')
+    def assert_that_impressive_is_not_displayed(self):
+        assert not self.is_element_displayed(self.result_impressive)
+
+    @allure.step('Check that result text consists of "yes"')
     def assert_that_yes_is_displayed(self):
         return self.assert_that_element_is_displayed_by_xpath(self.result_yes)
 
-    @allure.step
+    @allure.step('Check that result text doesnt consist of "yes"')
     def assert_that_yes_is_not_displayed(self):
         assert not self.is_element_displayed(self.result_yes)
-
-

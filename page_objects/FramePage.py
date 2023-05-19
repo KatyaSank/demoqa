@@ -14,10 +14,10 @@ class Frame(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Switch to the iframe')
     def switch_to_the_frame(self):
         return self.switch_to_frame(self.frame)
 
-    @allure.step
+    @allure.step('Check that text in iframe is correct')
     def assert_that_text_in_frame_is_correct(self):
         assert self.get_element_text(self.frame_title) == self.frame_title_text

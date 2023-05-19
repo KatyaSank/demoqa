@@ -20,37 +20,34 @@ class Tips(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Hover the button')
     def hover_the_button(self):
         return self.hover(self.button_locator)
 
-    @allure.step
-    def assert_that_button_tips_is_correct(self):
-        assert self.get_attribute_by_xpath_any_attribute(self.button_locator, self.attribute) == self.button_tips
-
-    @allure.step
+    @allure.step('Hover the text field')
     def hover_the_text_field(self):
         return self.hover(self.text_field_locator)
 
-    @allure.step
-    def assert_that_text_field_tips_is_correct(self):
-        assert self.get_attribute_by_xpath_any_attribute(self.text_field_locator, self.attribute) == self.text_field_tips
-
-    @allure.step
+    @allure.step('Hover the contrary container')
     def hover_the_contrary_container(self):
         return self.hover(self.contrary_locator)
 
-    @allure.step
-    def assert_that_contrary_container_tips_is_correct(self):
-        assert self.get_attribute_by_xpath_any_attribute(self.contrary_locator, self.attribute) == self.contrary_tips
-
-    @allure.step
+    @allure.step('Hover the section container')
     def hover_the_section_container(self):
         return self.hover(self.section_locator)
 
-    @allure.step
+    @allure.step('Check that the button tips is correct')
+    def assert_that_button_tips_is_correct(self):
+        assert self.get_attribute_by_xpath_any_attribute(self.button_locator, self.attribute) == self.button_tips
+
+    @allure.step('Check that the text field tips is correct')
+    def assert_that_text_field_tips_is_correct(self):
+        assert self.get_attribute_by_xpath_any_attribute(self.text_field_locator, self.attribute) == self.text_field_tips
+
+    @allure.step('Check that the contrary container tips is correct')
+    def assert_that_contrary_container_tips_is_correct(self):
+        assert self.get_attribute_by_xpath_any_attribute(self.contrary_locator, self.attribute) == self.contrary_tips
+
+    @allure.step('Check that the section container tips is correct')
     def assert_that_section_container_tips_is_correct(self):
         assert self.get_attribute_by_xpath_any_attribute(self.section_locator, self.attribute) == self.section_tips
-
-
-

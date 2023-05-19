@@ -1,5 +1,3 @@
-import time
-
 from page_objects.AlertsPage import *
 
 
@@ -45,9 +43,7 @@ def test_prompt_alert(driver):
     alert = Alert(driver)
     alert.open_page()
     alert.open_prompt_box_alert()
-    time.sleep(2)
     alert.switch_to_alert_and_fill_text_to_field()
-    time.sleep(2)
     alert.assert_that_prompt_message_for_prompt_box_alert_is_correct()
 
 

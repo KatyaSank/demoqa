@@ -20,9 +20,18 @@ class Base:
         xpath = (By.XPATH, selector)
         return self.driver.find_element(*xpath)
 
+    def scroll_to_element(self, element):
+        return self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
+    def scroll_to_top(self):
+        return self.driver.execute_script("scroll(0, 0);")
+
+    def scroll_to_bottom(self):
+        return self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
     def click(self, selector):
         element = self.get_locator_by_xpath(selector)
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        self.scroll_to_element(element)
         element.click()
 
     def double_click(self, selector):
@@ -46,9 +55,6 @@ class Base:
 
     def clear(self, selector):
         return self.get_locator_by_xpath(selector).clear()
-
-    def scroll_to_bottom(self):
-        return self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
     def get_element_text(self, selector):
         return self.get_locator_by_xpath(selector).text
@@ -74,18 +80,24 @@ class Base:
     def get_alert(self):
         return WebDriverWait(self.driver, 10).until(EC.alert_is_present())
 
+    def switch_to_alert(self):
+        return self.driver.switch_to.alert
+
+    def wait_until_invisibility_of_element(self, selector):
+        return WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located
+                                                    (self.get_locator_by_xpath(selector)))
+
     def switch_to_alert_and_fill_text(self, name):
-        alert = self.driver.switch_to.alert
+        self.get_alert()
+        alert = self.switch_to_alert()
         alert.send_keys(name)
         alert.accept()
 
     def switch_to_alert_and_accept_it(self):
-        alert = self.driver.switch_to.alert
-        alert.accept()
+        return self.switch_to_alert().accept()
 
     def switch_to_alert_and_decline_it(self):
-        alert = self.driver.switch_to.alert
-        alert.dismiss()
+        return self.switch_to_alert().dismiss()
 
     def switch_to_frame(self, selector):
         return self.driver.switch_to.frame(self.get_locator_by_xpath(selector))
@@ -98,10 +110,4 @@ class Base:
                 return False
         except NoSuchElementException:
             return False
-
-    def scroll_to_top(self):
-        return self.driver.execute_script("scroll(0, 0);")
-
-
-
 

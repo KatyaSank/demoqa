@@ -16,18 +16,18 @@ class NestedFrame(Base):
     def open_page(self):
         return self.get_url(self.url)
 
-    @allure.step
+    @allure.step('Switch to the parent iframe')
     def switch_to_the_parent_frame(self):
         return self.switch_to_frame(self.frame)
 
-    @allure.step
+    @allure.step('Switch to the child iframe')
     def switch_to_the_child_frame(self):
         return self.switch_to_frame(self.nested_frame)
 
-    @allure.step
+    @allure.step('Check that text in parent iframe is correct')
     def assert_that_text_in_parent_frame_is_correct(self):
         assert self.get_element_text(self.frame_text_locator) == self.parent_frame_text
 
-    @allure.step
+    @allure.step('Check that text in child iframe is correct')
     def assert_that_text_in_child_frame_is_correct(self):
         assert self.get_element_text(self.frame_text_locator) == self.child_frame_text
